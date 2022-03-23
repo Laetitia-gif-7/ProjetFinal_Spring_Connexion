@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 		User newUser = userDAO.save(user);
 		
 		//Transfert d'information de l'Entity vers le DTO
-		BeanUtils.copyProperties(user, userDTO);
+		BeanUtils.copyProperties(newUser, userDTO);
 		return userDTO;
 		
 	}
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 		
 		for (User user : users) {
 			UserDTO userDTO = new UserDTO();
-			BeanUtils.copyProperties(user, usersDTO);
+			BeanUtils.copyProperties(user, userDTO);
 			usersDTO.add(userDTO);
 		}
 		

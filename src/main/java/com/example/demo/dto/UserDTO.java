@@ -1,7 +1,5 @@
 package com.example.demo.dto;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 public class UserDTO {
 
