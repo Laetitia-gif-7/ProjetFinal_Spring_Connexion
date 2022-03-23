@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import com.example.demo.service.impl.UserServiceImpl;
@@ -21,9 +22,12 @@ public class FinalSpringProjectApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		User user = new User("John", "john***");
+		UserDTO user = new UserDTO("Jordan", "jordan***");
+		service.createUser(user);
+		user = new UserDTO("Vina", "vina***");
 		service.createUser(user);
 		
+		System.out.println(service.getAllUsers());
 	}
 
 }
