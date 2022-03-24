@@ -52,4 +52,24 @@ public class UserServiceImpl implements UserService {
 		return usersDTO;
 	}
 
+	@Override
+	public void deleteUserById(Integer id) {
+		userDAO.deleteById(id);
+		
+	}
+
+	@Override
+	public UserDTO updateUser(Integer id, UserDTO userDTO) {
+		User user = new User();
+		
+		BeanUtils.copyProperties(userDTO, user);
+		user.setId(id);
+		
+		User updateduser = userDAO.save(user);
+		
+		BeanUtils.copyProperties(updateduser, userDTO);
+		
+		return userDTO;
+	}
+
 }
