@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserDAO;
@@ -19,9 +21,15 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder; 
 
 	@Override
 	public UserDTO createUser(UserDTO userDTO) {
+		
+		//String encodedPassword = this.passwordEncoder.encode(userDTO.getPassword());
+		userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword())); 
 		//Transfert d'information du DTO vers l'Entity
 		
 		User user = new User();
@@ -71,5 +79,7 @@ public class UserServiceImpl implements UserService {
 		
 		return userDTO;
 	}
+	
 
+	
 }
